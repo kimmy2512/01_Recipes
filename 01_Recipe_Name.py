@@ -3,11 +3,12 @@
 # Not Blank Function goes here
 def not_blank(question):
     error = "Your recipe name has numbers in it."
-    has_errors = ""
+
 
     valid = False
     while not valid:
         response = input(question)
+        has_errors = ""
 
         # Look at each character in string and if it's a number, complain
         for letter in response:
