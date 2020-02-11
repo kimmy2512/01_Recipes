@@ -4,7 +4,6 @@
 def not_blank(question):
     error = "Your recipe name has numbers in it."
 
-
     valid = False
     while not valid:
         response = input(question)
@@ -30,5 +29,3 @@ def not_blank(question):
 recipe_name = not_blank("What is the recipe name? ")
 
 print("You are making {}".format(recipe_name))
-
-print("hello world")
