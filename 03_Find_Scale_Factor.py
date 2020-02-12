@@ -27,6 +27,8 @@ def num_check(question):
 
 
 # Main Routine goes here
+sf_ok = "no"
+while sf_ok == "no":
 
 serving_size = num_check("What is the recipe serving size? ")
 desired_size = num_check("How many servings are needed? ")
