@@ -1,11 +1,4 @@
-# Ask user for amount
-# Ask user for Unit
-# Check that unit is in dictionary
-
-# If unit in dictionary, convert to mL
-
-# If no unit given / unit is unknown, leave as is.
-
+# Conversion function...
 
 # Functions goes here
 def unit_checker():
