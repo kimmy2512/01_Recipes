@@ -76,6 +76,14 @@ csv_groceries = csv.reader(groceries)
 # Create a dictionary to hold the data
 food_dictionary = {}
 
+# Add the data from the list into the dictionary
+# (first item in row is key, next is definition)
+
+for row in csv_groceries:
+    food_dictionary[row[0]] = row[1]
+
+print(food_dictionary)
+
 # Get items etc
 
 keep_going = ""
@@ -85,8 +93,25 @@ while keep_going == "":
 
     # Get unit and change it to match dictionary.
     unit = unit_checker()
+    ingredient = input("Ingredient: ")
 
+    # Convert to mls if possible
     amount = general_converter(amount, unit, unit_central, 1)
     print(amount)
 
-    keep_going = input("<enter> or q")
+    # If we converted to mls, try and convert to grams
+    if amount[1] =="yes":
+        amount_2 = general_converter(amount[0], ingredient, food_dictionary, 250)
+
+        # If the ingredient is in the list, convert it
+        if amount_2[1] == "yes":
+            print(amount_2)
+
+        # If the ingredient is not in the list, leave the unit as ml
+        else: print("unchanged")
+
+    # If the unit is not mls, leave the line unchanged
+    else: print("unchanged")
+
+
+    # keep_going = input("<enter> or q")
