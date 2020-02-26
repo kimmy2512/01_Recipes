@@ -112,9 +112,10 @@ def general_converter(how_much, lookup, dictionary, conversion_factor):
 
     return [how_much, converted]
 
-def unit_checker():
 
-    unit_tocheck = input("Unit? ")
+def unit_checker(raw_unit):
+
+    unit_tocheck = raw_unit
 
     # Abbreviation lists
     teaspoon = ["tsp", "teaspoon", "t", "teaspoons"]
@@ -251,10 +252,35 @@ for recipe_line in full_recipe:
 
     num_spaces = recipe_line.count(" ")
     if num_spaces > 1:
-        ingredient = get_unit [1]
-    # Convert from ml to g
+        # Item has unit and ingredient
+        unit = get_unit [0]
+        ingredient = get_unit[1]
+        unit = unit_checker(unit)
+
+        # If unit is already in grams, add it to the list
+        if unit == "g":
+            modernised_recipe.append("{:.0f} g {}".format(amount, ingredient))
+            continue
+
+        # Convert to mls if possible...
+        amount = general_converter(amount, unit, unit_central, 1)
+
+        # If we converted to mls, try and convert to grams
+        if amount[1] == "yes":
+            amount_2 = general_converter(amount[0], ingredient, food_dictionary, 250)
+
+            # If the ingredient is in the list, convert it
+            if amount_2[1] == "yes":
+                modernised_recipe.append("{:.0f} g {}".format(amount_2[0], ingredient))
+
+            # If the ingredient is not in the list, leave the unit as ml
+            else:
+                modernised_recipe.append("{:.0f} ml {}".format(amount[0], ingredient))
+                continue
+
+
     else:
-        modernised_recipe.append("{} {} {}".format(amount, unit, ingredient))
+        modernised_recipe.append("{} {}".format(amount, unit_ingredient))
         continue
 
     modernised_recipe.append("{} {} {}".format(amount, unit, ingredient))
