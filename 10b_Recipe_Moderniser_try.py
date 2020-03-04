@@ -275,9 +275,14 @@ for recipe_line in full_recipe:
         modernised_recipe.append("{} {}".format(amount, unit_ingredient))
         continue
 
-    modernised_recipe.append("{} {} {}".format(amount, unit, ingredient))
 
-# Put updated ingredient in list
+# Decorate the outcome so that it is easier for users to read
+print()
+print("******** {} ********".format(recipe_name))
+print(source)
+print()
+print("***** Ingredients (scaled by factor of {} *****".format(scale_factor))
+print()
 
 # Output ingredient list
 for item in modernised_recipe:

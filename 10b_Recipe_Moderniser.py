@@ -278,7 +278,6 @@ for recipe_line in full_recipe:
                 modernised_recipe.append("{:.0f} ml {}".format(amount[0], ingredient))
                 continue
 
-
     else:
         modernised_recipe.append("{} {}".format(amount, unit_ingredient))
         continue
